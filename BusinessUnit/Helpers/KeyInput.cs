@@ -27,7 +27,7 @@ namespace Crypto
 
                 if (key.Key == ConsoleKey.Backspace)
                 {
-                    encrKey = encrKey.Substring(0, encrKey.Length > 0 ? encrKey.Length : 0);
+                    encrKey = encrKey.Substring(0, encrKey.Length > 0 ? encrKey.Length-1 : 0);
                 }
                 else if (key.Key == ConsoleKey.Escape)
                 {
@@ -52,7 +52,6 @@ namespace Crypto
                         else
                         {
                             //empty
-                            return true;
                         }
                     }
                     else if (menuChoice == 1)
