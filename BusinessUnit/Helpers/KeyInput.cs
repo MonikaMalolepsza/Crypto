@@ -57,6 +57,8 @@ namespace Crypto
                     else if (menuChoice == 1)
                     {
                         //Vigenere
+                        encrKey += key.KeyChar;
+
                     }
                     else if (menuChoice == 2)
                     {

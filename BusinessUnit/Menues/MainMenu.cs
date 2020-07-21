@@ -148,6 +148,115 @@ namespace Crypto
                 else if (menuChoiceEncryptionMethod == 1)
                 {
                     //Vigenere
+                       encDecSelection = true;
+
+                  do
+                  {
+                      int encDecChoice = ShowMenu(ref encDecMenuPoints, "Encryption/Decryption Menu");
+
+                      if (encDecChoice == 0)
+                      {
+                          // Enc
+                          do
+                          {
+                              destPathSelection = true;
+                              encDec = true;
+
+                              if (ImportExportPath(true, true, ref sourcePath))
+                              {
+                                  ImportData(ref textToEncrypt, sourcePath);
+                                  sourcePathSelection = true;
+
+                                  do
+                                  {
+                                      if (ImportExportPath(false, true, ref destinationPath))
+                                      {
+                                          if (KeyInput(menuChoiceEncryptionMethod, ref key))
+                                          {
+                                              RunAlgorithm(false, menuChoiceEncryptionMethod, key, ref textToEncrypt, ref result);
+                                              ExportData(ref result, destinationPath);
+                                              destPathSelection = false;
+                                              sourcePathSelection = false;
+                                              encDecSelection = false;
+                                          }
+                                          else
+                                          {
+                                            //empty
+                                          }
+
+                                      }
+                                      else
+                                      {
+                                          sourcePathSelection = false;
+                                      }
+
+                                  } while (sourcePathSelection);
+
+                              }
+                              else
+                              {
+                                  destPathSelection = false;
+                              }
+
+                          } while (destPathSelection);
+
+
+                      }
+                      else if (encDecChoice == 1)
+                      {
+                         // Dec
+                         do
+                         {
+                             destPathSelection = true;
+                             encDec = true;
+
+                             if (ImportExportPath(true, false, ref sourcePath))
+                             {
+                                 ImportData(ref textToEncrypt, sourcePath);
+                                 sourcePathSelection = true;
+
+                                 do
+                                 {
+                                     if (ImportExportPath(false, false, ref destinationPath))
+                                     {
+                                         if (KeyInput(menuChoiceEncryptionMethod, ref key))
+                                         {
+                                             RunAlgorithm(false, menuChoiceEncryptionMethod, key, ref textToEncrypt, ref result);
+                                             ExportData(ref result, destinationPath);
+                                             destPathSelection = false;
+                                             sourcePathSelection = false;
+                                             encDecSelection = false;
+                                         }
+                                         else
+                                         {
+                                            //empty
+                                         }
+
+                                     }
+                                     else
+                                     {
+                                         sourcePathSelection = false;
+                                     }
+
+                                 } while (sourcePathSelection);
+
+                             }
+                             else
+                             {
+                                 destPathSelection = false;
+                             }
+
+                         } while (destPathSelection);
+
+                      }
+                      else
+                      {
+                          encDecSelection = false;
+                      }
+
+
+                  } while (encDecSelection);
+
                 }
                 else if (menuChoiceEncryptionMethod == 2)
                 {

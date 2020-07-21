@@ -21,7 +21,7 @@ namespace Crypto
             {
                 Console.CursorLeft = (Console.WindowWidth - 32) / 2;
                 Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("{0,-12}{1,20}", titles[i], information[i]);
+                Console.WriteLine("{0,-13}{1,20}", titles[i], information[i]);
                 Console.ForegroundColor = ConsoleColor.White;
                 Thread.Sleep(400);
             }
