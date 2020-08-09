@@ -1,4 +1,10 @@
-using System.Reflection;
+//Autor:        Monika Malolepsza
+//Klasse:       IA119
+//Datei:        RunAlgorithm.cs
+//Datum:        08.06.2020
+//Beschreibung:
+//Aenderungen:  08.07.2020 Setup
+
 
 namespace Crypto
 {
@@ -10,10 +16,10 @@ namespace Crypto
             switch (menuChoiceEncryptionMethod)
             {
                 case 0:
-                    Ceasar(encDec, key, ref textToEncrypt, ref result);
+                    Ceasar(encDec, key,ref textToEncrypt, ref result);
                     break;
                 case 1:
-                    Vigenere(encDec, key, ref textToEncrypt, ref result);
+                    Vigenere(encDec, key,ref textToEncrypt, ref result);
                     break;
                 case 2:
                     OTP(encDec, key, ref textToEncrypt, ref result);

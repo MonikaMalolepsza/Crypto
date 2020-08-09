@@ -40,6 +40,7 @@
     <ItemGroup>
         <Compile Include="BusinessUnit\Helpers\ImportExportPath.cs" />
         <Compile Include="BusinessUnit\Helpers\IntToMethodConverter.cs" />
+        <Compile Include="BusinessUnit\Helpers\KeyGen.cs" />
         <Compile Include="BusinessUnit\Helpers\KeyInput.cs" />
         <Compile Include="BusinessUnit\Helpers\ShowMenu.cs" />
         <Compile Include="BusinessUnit\Manipulation\ImportExport\ExportData.cs" />

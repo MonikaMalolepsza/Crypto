@@ -2,8 +2,8 @@
 //Klasse:       IA119
 //Datei:        MainMenu.cs
 //Datum:        08.06.2020
-//Beschreibung:
-//Aenderungen:  08.06.2020 Setup
+//Beschreibung: Main menu defines the navigation throughout the app
+//Aenderungen:  08.06.2020 Setup x
 
 namespace Crypto
 {
@@ -48,18 +48,20 @@ namespace Crypto
                               destPathSelection = true;
                               encDec = true;
 
-                              if (ImportExportPath(true, true, ref sourcePath))
+                              if (ImportExportPath(true, encDec, ref sourcePath))
                               {
+                                   textToEncrypt = "";
+                                   result = "";
                                   ImportData(ref textToEncrypt, sourcePath);
                                   sourcePathSelection = true;
 
                                   do
                                   {
-                                      if (ImportExportPath(false, true, ref destinationPath))
+                                      if (ImportExportPath(false, encDec, ref destinationPath))
                                       {
                                           if (KeyInput(menuChoiceEncryptionMethod, ref key))
                                           {
-                                              RunAlgorithm(false, menuChoiceEncryptionMethod, key, ref textToEncrypt, ref result);
+                                              RunAlgorithm(encDec, menuChoiceEncryptionMethod, key, ref textToEncrypt, ref result);
                                               ExportData(ref result, destinationPath);
                                               destPathSelection = false;
                                               sourcePathSelection = false;
@@ -94,20 +96,22 @@ namespace Crypto
                          do
                          {
                              destPathSelection = true;
-                             encDec = true;
+                             encDec = false;
 
-                             if (ImportExportPath(true, false, ref sourcePath))
+                             if (ImportExportPath(true, encDec, ref sourcePath))
                              {
+                                 textToEncrypt = "";
+                                 result = "";
                                  ImportData(ref textToEncrypt, sourcePath);
                                  sourcePathSelection = true;
 
                                  do
                                  {
-                                     if (ImportExportPath(false, false, ref destinationPath))
+                                     if (ImportExportPath(false, encDec, ref destinationPath))
                                      {
                                          if (KeyInput(menuChoiceEncryptionMethod, ref key))
                                          {
-                                             RunAlgorithm(false, menuChoiceEncryptionMethod, key, ref textToEncrypt, ref result);
+                                             RunAlgorithm(encDec, menuChoiceEncryptionMethod, key, ref textToEncrypt, ref result);
                                              ExportData(ref result, destinationPath);
                                              destPathSelection = false;
                                              sourcePathSelection = false;
@@ -162,18 +166,20 @@ namespace Crypto
                               destPathSelection = true;
                               encDec = true;
 
-                              if (ImportExportPath(true, true, ref sourcePath))
+                              if (ImportExportPath(true, encDec, ref sourcePath))
                               {
+                                  textToEncrypt = "";
+                                  result = "";
                                   ImportData(ref textToEncrypt, sourcePath);
                                   sourcePathSelection = true;
 
                                   do
                                   {
-                                      if (ImportExportPath(false, true, ref destinationPath))
+                                      if (ImportExportPath(false, encDec, ref destinationPath))
                                       {
                                           if (KeyInput(menuChoiceEncryptionMethod, ref key))
                                           {
-                                              RunAlgorithm(false, menuChoiceEncryptionMethod, key, ref textToEncrypt, ref result);
+                                              RunAlgorithm(encDec, menuChoiceEncryptionMethod, key, ref textToEncrypt, ref result);
                                               ExportData(ref result, destinationPath);
                                               destPathSelection = false;
                                               sourcePathSelection = false;
@@ -208,20 +214,23 @@ namespace Crypto
                          do
                          {
                              destPathSelection = true;
-                             encDec = true;
+                             encDec = false;
 
-                             if (ImportExportPath(true, false, ref sourcePath))
+                             if (ImportExportPath(true, encDec, ref sourcePath))
                              {
+                                 textToEncrypt = "";
+                                 result = "";
                                  ImportData(ref textToEncrypt, sourcePath);
                                  sourcePathSelection = true;
 
                                  do
                                  {
-                                     if (ImportExportPath(false, false, ref destinationPath))
+                                     if (ImportExportPath(false, encDec, ref destinationPath))
                                      {
+
                                          if (KeyInput(menuChoiceEncryptionMethod, ref key))
                                          {
-                                             RunAlgorithm(false, menuChoiceEncryptionMethod, key, ref textToEncrypt, ref result);
+                                             RunAlgorithm(encDec, menuChoiceEncryptionMethod, key, ref textToEncrypt, ref result);
                                              ExportData(ref result, destinationPath);
                                              destPathSelection = false;
                                              sourcePathSelection = false;
@@ -261,6 +270,106 @@ namespace Crypto
                 else if (menuChoiceEncryptionMethod == 2)
                 {
                     //OTP
+                    encDecSelection = true;
+
+                  do
+                  {
+                      int encDecChoice = ShowMenu(ref encDecMenuPoints, "Encryption/Decryption Menu");
+
+                      if (encDecChoice == 0)
+                      {
+                          // Enc
+                          do
+                          {
+                              destPathSelection = true;
+                              encDec = true;
+
+                              if (ImportExportPath(true, encDec, ref sourcePath))
+                              {
+                                  textToEncrypt = "";
+                                  result = "";
+                                  ImportData(ref textToEncrypt, sourcePath);
+                                  sourcePathSelection = true;
+
+                                  do
+                                  {
+                                      if (ImportExportPath(false, encDec, ref destinationPath))
+                                      {
+                                            KeyGen(ref key, textToEncrypt.Length);
+                                            RunAlgorithm(encDec, menuChoiceEncryptionMethod, key, ref textToEncrypt, ref result);
+                                            ExportData(ref result, destinationPath);
+                                            destPathSelection = false;
+                                            sourcePathSelection = false;
+                                            encDecSelection = false;
+
+                                      }
+                                      else
+                                      {
+                                          sourcePathSelection = false;
+                                      }
+
+                                  } while (sourcePathSelection);
+
+                              }
+                              else
+                              {
+                                  destPathSelection = false;
+                              }
+
+                          } while (destPathSelection);
+
+
+                      }
+                      else if (encDecChoice == 1)
+                      {
+                         // Dec
+                         do
+                         {
+                             destPathSelection = true;
+                             encDec = false;
+
+                             if (ImportExportPath(true, encDec, ref sourcePath))
+                             {
+                                 textToEncrypt = "";
+                                 result = "";
+                                 ImportData(ref textToEncrypt, sourcePath);
+                                 sourcePathSelection = true;
+
+                                 do
+                                 {
+                                     if (ImportExportPath(false, encDec, ref destinationPath))
+                                     {
+
+                                         ImportData(ref key, "key.txt");
+                                         RunAlgorithm(encDec, menuChoiceEncryptionMethod, key, ref textToEncrypt, ref result);
+                                         ExportData(ref result, destinationPath);
+                                         destPathSelection = false;
+                                         sourcePathSelection = false;
+                                         encDecSelection = false;
+                                     }
+                                     else
+                                     {
+                                         sourcePathSelection = false;
+                                     }
+
+                                 } while (sourcePathSelection);
+
+                             }
+                             else
+                             {
+                                 destPathSelection = false;
+                             }
+
+                         } while (destPathSelection);
+
+                      }
+                      else
+                      {
+                          encDecSelection = false;
+                      }
+
+
+                  } while (encDecSelection);
                 }
                 else if (menuChoiceEncryptionMethod == 3)
                 {

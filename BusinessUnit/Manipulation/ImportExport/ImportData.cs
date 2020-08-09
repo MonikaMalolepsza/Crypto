@@ -2,7 +2,7 @@
 //Klasse:       IA119
 //Datei:        Import.cs
 //Datum:        08.06.2020
-//Beschreibung:
+//Beschreibung: imports the content of an .txt file and saves it as a string
 //Aenderungen:  08.06.2020 Setup
 
 using System;
